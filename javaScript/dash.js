@@ -32,7 +32,7 @@ if (saveProjectBtn) {
         }
 
         // 👉 Yahan URL ke aakhir mein userId append kar di hai
-        fetch(`http://localhost:8080/api/handoveriq/detail/${currentUserId}`, { 
+        fetch(`https://handoveriq-2xn4.onrender.com/api/handoveriq/detail/${currentUserId}`, { 
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(projectData)
@@ -72,7 +72,7 @@ if (saveDocBtn) {
             return;
         }
 
-       fetch(`http://localhost:8080/api/handoveriq/document/${currentUserId}`, { 
+       fetch(`https://handoveriq-2xn4.onrender.com/api/handoveriq/document/${currentUserId}`, { 
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(documentData)
@@ -109,7 +109,7 @@ if (analyzeAiBtn) {
         aiOutputText.innerText = "Generating AI HandOver Report, please wait... 🚀";
 
         // 3. Backend ke /api/handoveriq/check endpoint par request bhejo
-        fetch(`http://localhost:8080/api/handoveriq/check?projectId=${projectId}&documentId=${documentId}`, {
+        fetch(`https://handoveriq-2xn4.onrender.com/api/handoveriq/check?projectId=${projectId}&documentId=${documentId}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' }
         })
