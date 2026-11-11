@@ -28,7 +28,7 @@ if (registerForm) {
         const formData = new FormData(registerForm);
         const userData = Object.fromEntries(formData.entries());
 
-        fetch('http://localhost:8080/api/handoveriq/register', {
+        fetch('https://handoveriq-2xn4.onrender.com/api/handoveriq/register', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(userData)
@@ -59,7 +59,7 @@ if (loginForm) {
         const formData = new FormData(loginForm);
         const loginData = Object.fromEntries(formData.entries());
 
-        fetch('http://localhost:8080/api/handoveriq/login', { 
+        fetch(' https://handoveriq-2xn4.onrender.com/api/handoveriq/login', { 
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(loginData)
