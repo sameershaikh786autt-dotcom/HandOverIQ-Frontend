@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HandOverIQ - Dashboard</title>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header Section -->
+        <header class="dashboard-header">
+            <h2>HandOverIQ Dashboard</h2>
+            <button id="logoutBtn" class="submit-btn">Log Out</button>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="dashboard-content">
+            <h3>Welcome back!</h3>
+            <p>Welcome to your HandOverLQ workspace. Easily manage your projects and documentation here.</p>
+
+            <!-- 1. Project Information Card -->
+    <div class="workspace-card" style="margin-top: 20px; padding: 20px; background: #f9f9f9; border-radius: 10px; border: 1px solid #ddd;">
+        <h4>Project Information</h4>
+        <input type="text" id="projectName" placeholder="Project Name" style="width: 100%; padding: 10px; margin-top: 8px; border-radius: 6px; border: 1px solid #ccc;" />
+        <textarea id="projectDescription" placeholder="Project Description..." rows="3" style="width: 100%; padding: 10px; margin-top: 8px; border-radius: 6px; border: 1px solid #ccc;"></textarea>
+        <input type="text" id="repositoryUrl" placeholder="GitHub Repository URL" style="width: 100%; padding: 10px; margin-top: 8px; border-radius: 6px; border: 1px solid #ccc;" />
+        
+        <!-- Project Save Button -->
+        <button id="saveProjectBtn" class="submit-btn" style="margin-top: 12px; background-color: #5a7352;">Save Project</button>
+    </div>
+
+    <!-- 2. Document Information Card -->
+    <div class="workspace-card" style="margin-top: 20px; padding: 20px; background: #f9f9f9; border-radius: 10px; border: 1px solid #ddd;">
+        <h4>Document Information</h4>
+        <input type="text" id="fileName" placeholder="File Name (e.g., readme.md)" style="width: 100%; padding: 10px; margin-top: 8px; border-radius: 6px; border: 1px solid #ccc;" />
+        <textarea id="extractedText" placeholder="Paste extracted text or documentation here..." rows="3" style="width: 100%; padding: 10px; margin-top: 8px; border-radius: 6px; border: 1px solid #ccc;"></textarea>
+        
+        <!-- Document Save Button -->
+        <button id="saveDocBtn" class="submit-btn" style="margin-top: 12px; background-color: #5a7352;">Save Document</button>
+    </div>
+
+
+    <!-- ==================== AI HandOver Report Section ==================== -->
+<div class="ai-section" style="margin-top: 30px; padding: 20px; background: #f9f9f9; border-radius: 10px; border: 1px solid #ddd;">
+    <h3>Generate AI HandOver Report</h3>
+    <p style="color: #666; font-size: 0.9rem;">Enter your projectId (9fee6c62-bf0a-4ba4-938b-f6010b29af7e) and documentId (b52db041-fa10-4a93-8904-4b42e09775fa):</p>
+
+    <!-- Project ID aur Document ID ke liye Inputs -->
+    <div style="margin-top: 15px; display: flex; gap: 15px; flex-wrap: wrap;">
+        <input type="text" id="projectIdInput" placeholder="Enter Project ID" style="padding: 10px; flex: 1; min-width: 200px; border-radius: 5px; border: 1px solid #ccc;">
+        <input type="text" id="documentIdInput" placeholder="Enter Document ID" style="padding: 10px; flex: 1; min-width: 200px; border-radius: 5px; border: 1px solid #ccc;">
+    </div>
+
+    <!-- AI Analysis Button -->
+    <div style="margin-top: 20px; text-align: center;">
+        <button id="analyzeAiBtn" class="submit-btn" style="padding: 12px 25px; font-size: 1rem; background-color: #3b5249; color: #fff; border: none; border-radius: 5px; cursor: pointer;">Generate AI HandOver Report 🚀</button>
+    </div>
+</div>
+
+<!-- AI Response Display Section (Yeh shuru mein chup rahega) -->
+<div class="ai-response-box" style="margin-top: 20px; padding: 20px; background: #fff; border-radius: 10px; border: 1px solid #ccc; display: none;" id="responseContainer">
+    <h4>AI HandOverLQ Report:</h4>
+    <p id="aiOutputText" style="margin-top: 10px; color: #333; white-space: pre-line;"></p>
+</div>
+
+
+        </main>
+    </div>
+
+
+    <!-- Dashboard ke liye JavaScript (Optional - Logout ya data fetch karne ke liye) -->
+    <script src="javaScript/dash.js"></script>
+</body>
+</html>

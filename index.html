@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HandOverIQ</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    
+    <div class="container">
+        <h2>HandOverLQ</h2>
+
+
+         <!-- for log In users -->
+        <form class="login-form" id="loginForm">
+           <div class="email">
+             <label for="email" >Email</label>
+             <input type="email" name="email" id="emailInput" placeholder="example@gmail.com" required>
+           </div>
+
+           <div class="password">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="inputpassword" placeholder="123456@123" required>
+           </div>
+
+           <!-- Login ke liye naya Submit button -->
+           <button type="submit" class="submit-btn">Submit</button>
+
+        </form>
+
+
+         <!-- for register users -->
+        <form class="register-form hidden" id="registerForm">
+
+            <div class="name">
+             <label for="nameInput">Name</label>
+             <input type="text" name="name" id="nameInput" placeholder="Enter name" required>
+             </div>
+
+             <div class="email">
+             <label for="email" >Email</label>
+             <input type="email" name="email" id="regEmailInput" placeholder="example@gmail.com" required>
+             </div>
+
+           <div class="password">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="regPasswordInput" placeholder="123456@123" required>
+           </div>
+
+           <!-- Login ke liye naya Submit button -->
+           <button type="submit" class="submit-btn">Submit</button>
+
+        </form>
+        
+        <div class="btn-grp">
+             <button id="showLoginBtn">Log In</button>
+             <button id="showRegisterBtn">register</button> 
+        </div>
+
+    </div>
+
+
+   <script src="javaScript/app.js"></script>
+</body>
+</html>
