@@ -7,10 +7,13 @@
             window.location.href = 'index.html';
         });
 
+
+        const API_BASE = 'https://handoveriq-2xn4.onrender.com/api/handoveriq';
+
 // ==================== 3. SAVE PROJECT LOGIC ====================
 const saveProjectBtn = document.getElementById('saveProjectBtn');
 if (saveProjectBtn) {
-    saveProjectBtn.addEventListener('click', () => {
+    saveProjectBtn.addEventListener('click', async () => {
         const currentUserId = localStorage.getItem("userId");
 
         if (!currentUserId) {
@@ -19,38 +22,56 @@ if (saveProjectBtn) {
             return;
         }
 
-        const projectData = {
-            name: document.getElementById('projectName').value.trim(),
-            description: document.getElementById('projectDescription').value.trim(),
-            repositoryUrl: document.getElementById('repositoryUrl').value.trim()
-            // Yahan se userId hata di hai kyunki ab wo URL path mein ja rahi hai
-        };
+        const nameInput = document.getElementById('projectName');
+        const descInput = document.getElementById('projectDescription');
+        const repoInput = document.getElementById('repositoryUrl');
 
-        if (!projectData.name) {
+        const projectName = nameInput ? nameInput.value.trim() : '';
+        if (!projectName) {
             alert("Please enter a project name!");
             return;
         }
 
-        console.log("currentUserId =", currentUserId);
-        // 👉 Yahan URL ke aakhir mein userId append kar di hai
-        fetch(`https://handoveriq-2xn4.onrender.com/api/handoveriq/detail/${currentUserId}`, { 
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(projectData)
-        })
-        .then(response => response.text())
-        .then(result => {
+        const projectData = {
+            name: projectName,
+            description: descInput ? descInput.value.trim() : '',
+            repositoryUrl: repoInput ? repoInput.value.trim() : ''
+        };
+
+        saveProjectBtn.disabled = true;
+
+        try {
+            const response = await fetch(`${API_BASE}/detail/${encodeURIComponent(currentUserId)}`, { 
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(projectData)
+            });
+
+            if (!response.ok) {
+                throw new Error(await response.text() || "Failed to save project.");
+            }
+
+            const result = await response.text();
             alert("Project successfully saved! ID: " + result);
-        })
-        .catch(error => console.error('Project Save Error:', error));
+
+            // Optional: Form fields reset
+            if (nameInput) nameInput.value = '';
+            if (descInput) descInput.value = '';
+            if (repoInput) repoInput.value = '';
+
+        } catch (error) {
+            console.error('Project Save Error:', error);
+            alert("Error saving project: " + error.message);
+        } finally {
+            saveProjectBtn.disabled = false;
+        }
     });
 }
-
 
 // ==================== 4. SAVE DOCUMENT LOGIC ====================
 const saveDocBtn = document.getElementById('saveDocBtn');
 if (saveDocBtn) {
-    saveDocBtn.addEventListener('click', () => {
+    saveDocBtn.addEventListener('click', async () => {
         const currentUserId = localStorage.getItem("userId");
 
         if (!currentUserId) {
@@ -59,77 +80,104 @@ if (saveDocBtn) {
             return;
         }
 
-        const documentData = {
-            fileName: document.getElementById('fileName').value.trim(),
-            filePath: "uploads/" + document.getElementById('fileName').value.trim(),
-            fileType: "text/plain", 
-            fileSize: 1024,
-            extractedText: document.getElementById('extractedText').value.trim(),
-            userId: currentUserId
-        };
+        const fileInput = document.getElementById('fileName');
+        const textInput = document.getElementById('extractedText');
 
-        if (!documentData.fileName) {
+        const fileName = fileInput ? fileInput.value.trim() : '';
+        const extractedText = textInput ? textInput.value.trim() : '';
+
+        if (!fileName) {
             alert("Please enter a file name!");
             return;
         }
 
-       fetch(`https://handoveriq-2xn4.onrender.com/api/handoveriq/document/${currentUserId}`, { 
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(documentData)
-        })
-        .then(response => {
-            if (response.ok) {
-                alert("Document successfully saved! 📄");
-            } else {
-                alert("Failed to save document.");
+        const documentData = {
+            fileName: fileName,
+            filePath: `uploads/${fileName}`,
+            fileType: "text/plain", 
+            fileSize: new Blob([extractedText]).size || 1024,
+            extractedText: extractedText,
+            userId: currentUserId
+        };
+
+        saveDocBtn.disabled = true;
+
+        try {
+            const response = await fetch(`${API_BASE}/document/${encodeURIComponent(currentUserId)}`, { 
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(documentData)
+            });
+
+            if (!response.ok) {
+                throw new Error(await response.text() || "Failed to save document.");
             }
-        })
-        .catch(error => console.error('Document Save Error:', error));
+
+            alert("Document successfully saved! 📄");
+
+            if (fileInput) fileInput.value = '';
+            if (textInput) textInput.value = '';
+
+        } catch (error) {
+            console.error('Document Save Error:', error);
+            alert("Error saving document: " + error.message);
+        } finally {
+            saveDocBtn.disabled = false;
+        }
     });
 }
 
-const analyzeAiBtn = document.getElementById('analyzeAiBtn'); // 👉 Button ID match kar li
+// ==================== 5. AI HANDOVER REPORT LOGIC ====================
+const analyzeAiBtn = document.getElementById('analyzeAiBtn');
 const responseContainer = document.getElementById('responseContainer');
 const aiOutputText = document.getElementById('aiOutputText');
 
 if (analyzeAiBtn) {
-    analyzeAiBtn.addEventListener('click', () => {
-        // 1. Project ID aur Document ID ko input fields se uthao
-        // (Apne HTML input fields ki IDs yahan check kar lena, jaise 'projectIdInput' aur 'documentIdInput')
-        const projectId = document.getElementById('projectIdInput').value.trim();
-        const documentId = document.getElementById('documentIdInput').value.trim();
+    analyzeAiBtn.addEventListener('click', async () => {
+        const projInput = document.getElementById('projectIdInput');
+        const docInput = document.getElementById('documentIdInput');
+
+        const projectId = projInput ? projInput.value.trim() : '';
+        const documentId = docInput ? docInput.value.trim() : '';
 
         if (!projectId || !documentId) {
             alert("Please enter both Project ID and Document ID!");
             return;
         }
 
-        // 2. Box ko visible karo aur loading message dikhao
-        responseContainer.style.display = 'block';
-        aiOutputText.innerText = "Generating AI HandOver Report, please wait... 🚀";
+        if (responseContainer) responseContainer.style.display = 'block';
+        if (aiOutputText) {
+            aiOutputText.style.whiteSpace = 'pre-wrap'; // Preserves indentation & bullet points
+            aiOutputText.innerText = "Generating AI HandOver Report, please wait... 🚀";
+        }
 
-        // 3. Backend ke /api/handoveriq/check endpoint par request bhejo
-        // https://handoveriq-frontend.vercel.app/
-        fetch(`https://handoveriq-2xn4.onrender.com/api/handoveriq/check?projectId=${projectId}&documentId=${documentId}`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' }
-        })
-        .then(response => {
+        analyzeAiBtn.disabled = true;
+        analyzeAiBtn.innerText = "Processing...";
+
+        try {
+            const params = new URLSearchParams({ projectId, documentId });
+            const response = await fetch(`${API_BASE}/check?${params.toString()}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' }
+            });
+
             if (!response.ok) {
-                throw new Error("Server error or invalid IDs!");
+                const errDetail = await response.text();
+                throw new Error(errDetail || "Server returned an error status.");
             }
-            return response.text();
-        })
-        .then(aiResult => {
-            // 4. AI ka response aate hi screen par dikha do
-            responseContainer.style.display = 'block';
-            aiOutputText.innerText = aiResult;
-        })
-        .catch(error => {
+
+            const aiResult = await response.text();
+            if (aiOutputText) {
+                aiOutputText.innerText = aiResult;
+            }
+        } catch (error) {
             console.error('AI Error:', error);
-            responseContainer.style.display = 'block';
-            aiOutputText.innerText = "Error: Failed to generate AI report. Check console for details.";
-        });
+            if (aiOutputText) {
+                aiOutputText.innerText = `Error: ${error.message}`;
+            }
+        } finally {
+            analyzeAiBtn.disabled = false;
+            analyzeAiBtn.innerText = "Generate AI Report";
+        }
     });
 }
