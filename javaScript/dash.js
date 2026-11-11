@@ -31,6 +31,7 @@ if (saveProjectBtn) {
             return;
         }
 
+        console.log("currentUserId =", currentUserId);
         // 👉 Yahan URL ke aakhir mein userId append kar di hai
         fetch(`https://handoveriq-2xn4.onrender.com/api/handoveriq/detail/${currentUserId}`, { 
             method: 'POST',
@@ -109,6 +110,7 @@ if (analyzeAiBtn) {
         aiOutputText.innerText = "Generating AI HandOver Report, please wait... 🚀";
 
         // 3. Backend ke /api/handoveriq/check endpoint par request bhejo
+        // https://handoveriq-frontend.vercel.app/
         fetch(`https://handoveriq-2xn4.onrender.com/api/handoveriq/check?projectId=${projectId}&documentId=${documentId}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' }

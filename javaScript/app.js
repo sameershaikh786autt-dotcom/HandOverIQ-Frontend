@@ -14,68 +14,54 @@ registerbtn.addEventListener('click' , () => {
 });
 
 // 3. Log In Button dabane par kya hoga
-loginbtn.addEventListener('click', () => {
-    registerform.style.display = 'none';
-    loginform.style.display = 'block';
-});
+fetch('https://handoveriq-2xn4.onrender.com/api/handoveriq/register', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(userData)
+})
+.then(async response => {
+    const text = await response.text();
+    console.log("register response:", response.status, text);
 
-// ==================== 1. REGISTER LOGIC ====================
-const registerForm = document.getElementById('registerForm');
-if (registerForm) {
-    registerForm.addEventListener('submit', (e) => {
-        e.preventDefault();
+    if (!response.ok) {
+        alert("Registration failed (" + response.status + ")");
+        return;                       // error ko ID mat banne do
+    }
 
-        const formData = new FormData(registerForm);
-        const userData = Object.fromEntries(formData.entries());
-
-        fetch('https://handoveriq-2xn4.onrender.com/api/handoveriq/register', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(userData)
-        })
-        .then(response => response.text()) // Backend se userId string aayegi
-        .then(userId => {
-            if (userId) {
-                // 👉 Yahan localStorage mein userId save ho gayi!
-                localStorage.setItem("userId", userId.trim());
-                alert("Account registered successfully!");
-                registerForm.reset();
-                window.location.href = 'dashboard.html';
-            } else {
-                alert("Registration failed!");
-            }
-        })
-        .catch(error => console.error('Register Error:', error));
-    });
-}
+    // "User registered successfully: <id>" se sirf ID nikalo
+    const userId = text.split(": ").pop().replace(/["{}]/g, "").trim();
+    localStorage.setItem("userId", userId);
+    alert("Account registered successfully!");
+    registerForm.reset();
+    window.location.href = 'dashboard.html';
+})
+.catch(error => console.error('Register Error:', error));
 
 
 // ==================== 2. LOGIN LOGIC ====================
-const loginForm = document.getElementById('loginForm');
-if (loginForm) {
-    loginForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        const formData = new FormData(loginForm);
-        const loginData = Object.fromEntries(formData.entries());
+fetch('https://handoveriq-2xn4.onrender.com/api/handoveriq/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(loginData)
+})
+.then(async response => {
+    const text = await response.text();
+    console.log("login response:", response.status, text);
 
-        fetch(' https://handoveriq-2xn4.onrender.com/api/handoveriq/login', { 
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(loginData)
-        })
-        .then(response => response.text()) // Backend se userId string aayegi
-        .then(userId => {
-            if (userId && userId.length > 0) {
-                // 👉 Yahan login par bhi userId localStorage mein save ho gayi!
-                localStorage.setItem("userId", userId.trim());
-                alert("Login successful! Welcome back.");
-                loginForm.reset();
-                window.location.href = 'dashboard.html';
-            } else {
-                alert("Invalid email or password.");
-            }
-        })
-        .catch(error => console.error('Login Error:', error));
-    });
-}
+    if (!response.ok) {
+        alert("Login failed (" + response.status + ")");
+        return;                       // error ko ID mat banne do
+    }
+
+    const userId = text.replace(/["{}]/g, "").trim();
+    if (!userId) {
+        alert("Invalid email or password.");
+        return;
+    }
+
+    localStorage.setItem("userId", userId);
+    alert("Login successful! Welcome back.");
+    loginForm.reset();
+    window.location.href = 'dashboard.html';
+})
+.catch(error => console.error('Login Error:', error));
