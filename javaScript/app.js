@@ -14,54 +14,85 @@ registerbtn.addEventListener('click' , () => {
 });
 
 // 3. Log In Button dabane par kya hoga
-fetch('https://handoveriq-2xn4.onrender.com/api/handoveriq/register', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(userData)
-})
-.then(async response => {
-    const text = await response.text();
-    console.log("register response:", response.status, text);
+loginbtn.addEventListener('click', () => {
+    registerform.style.display = 'none';
+    loginform.style.display = 'block';
+});
 
-    if (!response.ok) {
-        alert("Registration failed (" + response.status + ")");
-        return;                       // error ko ID mat banne do
-    }
 
-    // "User registered successfully: <id>" se sirf ID nikalo
-    const userId = text.split(": ").pop().replace(/["{}]/g, "").trim();
-    localStorage.setItem("userId", userId);
-    alert("Account registered successfully!");
-    registerForm.reset();
-    window.location.href = 'dashboard.html';
-})
-.catch(error => console.error('Register Error:', error));
 
+// Base Backend URL (space-free)
+const API_BASE_URL = 'https://handoveriq-2xn4.onrender.com/api/handoveriq';
+
+// ==================== 1. REGISTER LOGIC ====================
+const registerForm = document.getElementById('registerForm');
+if (registerForm) {
+    registerForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(registerForm);
+        const userData = Object.fromEntries(formData.entries());
+
+        try {
+            const response = await fetch(`${API_BASE_URL}/register`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(userData)
+            });
+
+            if (!response.ok) {
+                const errText = await response.text();
+                throw new Error(errText || 'Registration failed');
+            }
+
+            const userId = await response.text();
+            if (userId && userId.trim().length > 0) {
+                localStorage.setItem("userId", userId.trim());
+                alert("Account registered successfully!");
+                registerForm.reset();
+                window.location.href = 'dashboard.html';
+            } else {
+                alert("Registration failed: Empty response from server.");
+            }
+        } catch (error) {
+            console.error('Register Error:', error);
+            alert("Registration failed: " + error.message);
+        }
+    });
+}
 
 // ==================== 2. LOGIN LOGIC ====================
-fetch('https://handoveriq-2xn4.onrender.com/api/handoveriq/login', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(loginData)
-})
-.then(async response => {
-    const text = await response.text();
-    console.log("login response:", response.status, text);
+const loginForm = document.getElementById('loginForm');
+if (loginForm) {
+    loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
 
-    if (!response.ok) {
-        alert("Login failed (" + response.status + ")");
-        return;                       // error ko ID mat banne do
-    }
+        const formData = new FormData(loginForm);
+        const loginData = Object.fromEntries(formData.entries());
 
-    const userId = text.replace(/["{}]/g, "").trim();
-    if (!userId) {
-        alert("Invalid email or password.");
-        return;
-    }
+        try {
+            const response = await fetch(`${API_BASE_URL}/login`, { 
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(loginData)
+            });
 
-    localStorage.setItem("userId", userId);
-    alert("Login successful! Welcome back.");
-    loginForm.reset();
-    window.location.href = 'dashboard.html';
-})
-.catch(error => console.error('Login Error:', error));
+            if (!response.ok) {
+                throw new Error('Invalid email or password.');
+            }
+
+            const userId = await response.text();
+            if (userId && userId.trim().length > 0) {
+                localStorage.setItem("userId", userId.trim());
+                alert("Login successful! Welcome back.");
+                loginForm.reset();
+                window.location.href = 'dashboard.html';
+            } else {
+                alert("Invalid email or password.");
+            }
+        } catch (error) {
+            console.error('Login Error:', error);
+            alert(error.message);
+        }
+    });
+}
