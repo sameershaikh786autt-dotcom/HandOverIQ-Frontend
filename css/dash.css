@@ -1,0 +1,82 @@
+/* ===== Cards ===== */
+.workspace-card {
+    margin-top: 20px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+/* ===== Inputs aur Textarea (sabke liye ek class) ===== */
+.field {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* ===== Buttons ===== */
+.save-btn {
+    margin-top: 12px;
+    background-color: #5a7352;
+}
+
+.ai-btn {
+    padding: 12px 25px;
+    font-size: 1rem;
+    background-color: #3b5249;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* ===== AI Section ===== */
+.ai-section {
+    margin-top: 30px;
+}
+
+.hint-text {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.id-inputs {
+    margin-top: 15px;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.id-inputs .field {
+    flex: 1;
+    min-width: 200px;
+    margin-top: 0;
+}
+
+.center-box {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* ===== AI Response Box ===== */
+.ai-response-box {
+    margin-top: 20px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+
+#aiOutputText {
+    margin-top: 10px;
+    color: #333;
+    white-space: pre-line;
+}
+
+/* ===== Hide helper (JS se toggle hoga) ===== */
+.hidden {
+    display: none;
+}
