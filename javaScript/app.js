@@ -92,11 +92,10 @@ loginform.addEventListener('submit', async(e) => {
               const userId = (await response.text()).trim();
               localStorage.setItem("userId", userId);
 
-              // yh login k baad k page hoga
-              window.location.href = "dashboard.html";
-
               alert("login successfully complete")
               loginform.reset();
+              // yh login k baad k page hoga
+              window.location.href = "dashboard.html";
         }else {
             alert("login failed");
         }
