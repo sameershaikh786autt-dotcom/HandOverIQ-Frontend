@@ -93,7 +93,7 @@ loginform.addEventListener('submit', async(e) => {
               localStorage.setItem("userId", userId);
 
               // yh login k baad k page hoga
-              window.location.href = "dashboard";
+              window.location.href = "dashboard.html";
 
               alert("login successfully complete")
               loginform.reset();
