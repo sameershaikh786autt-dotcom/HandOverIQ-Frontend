@@ -39,12 +39,13 @@ registerform.addEventListener('submit',  async (e) => {
     // const data = Object.fromEntries(formData);
 
     const data = Object.fromEntries(new FormData(registerform));
+    
 
     // yha s ab fetch krne k km hotaa h hai
     try{
         const  response = await fetch(`${BASE_URL_BACK}/register`, {
             method: 'POST',
-            headers: {'Content-Type': 'application/json' },
+            headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(data)
         }); 
 
@@ -71,3 +72,38 @@ registerform.addEventListener('submit',  async (e) => {
     }
 });
 
+
+
+// LOGIN
+loginform.addEventListener('submit', async(e) => {
+    e.preventDefault();
+
+    const data = Object.fromEntries(new FormData(loginform));
+
+    try {
+
+        const response = await fetch(`${BASE_URL_BACK}/login`, {
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify(data)
+        });
+
+        if(response.ok){
+              const userId = (await response.text()).trim();
+              localStorage.setItem("userId", userId);
+
+              // yh login k baad k page hoga
+              window.location.href = "dashboard";
+
+              alert("login successfully complete")
+              loginform.reset();
+        }else {
+            alert("login failed");
+        }
+        
+    } catch (error) {
+        alert("Login failed!")
+        console.error(error);
+    }
+
+})
