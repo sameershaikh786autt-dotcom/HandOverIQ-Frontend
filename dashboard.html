@@ -19,46 +19,11 @@
         <main class="dashboard-content">
             <h3>Welcome back!</h3>
             <p>Welcome to your HandOverLQ workspace. Easily manage your projects and documentation here.</p>
+        </main>    
 
-            <!-- 1. Project Information -->
-            <section class="workspace-card">
-                <h4>Project Information</h4>
-                <input type="text" id="projectName" class="field" placeholder="Project Name" />
-                <textarea id="projectDescription" class="field" placeholder="Project Description..." rows="3"></textarea>
-                <input type="text" id="repositoryUrl" class="field" placeholder="GitHub Repository URL" />
-                <button id="saveProjectBtn" class="submit-btn save-btn">Save Project</button>
-            </section>
+        
 
-            <!-- 2. Document Information -->
-            <section class="workspace-card">
-                <h4>Document Information</h4>
-                <input type="text" id="fileName" class="field" placeholder="File Name (e.g., readme.md)" />
-                <textarea id="extractedText" class="field" placeholder="Paste extracted text or documentation here..." rows="3"></textarea>
-                <button id="saveDocBtn" class="submit-btn save-btn">Save Document</button>
-            </section>
 
-            <!-- 3. AI HandOver Report -->
-            <section class="workspace-card ai-section">
-                <h3>Generate AI HandOver Report</h3>
-                <p class="hint-text">Enter your Project ID and Document ID:</p>
-
-                <div class="id-inputs">
-                    <input type="text" id="projectIdInput" class="field" placeholder="Enter Project ID" />
-                    <input type="text" id="documentIdInput" class="field" placeholder="Enter Document ID" />
-                </div>
-
-                <div class="center-box">
-                    <button id="analyzeAiBtn" class="submit-btn ai-btn">Generate AI HandOver Report 🚀</button>
-                </div>
-            </section>
-
-            <!-- AI Response (shuru mein hidden) -->
-            <section id="responseContainer" class="ai-response-box hidden">
-                <h4>AI HandOverLQ Report:</h4>
-                <p id="aiOutputText"></p>
-            </section>
-        </main>
-    </div>
 
     <script src="dashboard.js"></script>
 </body>
