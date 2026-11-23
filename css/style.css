@@ -1,149 +1,406 @@
 * {
-    padding: 0;
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
 }
 
 body {
-    display: flex;
-    justify-content: center; 
-    align-items: center;     
-    height: 100vh;           
-    margin: 0;               
+    background-color: rgb(6, 14, 29);
+    color: rgb(248, 250, 252);
+    min-height: 100vh;
 }
 
-.container {
-    width: 500px;
-    height: 500px;
-    border: 3px solid rgb(209, 172, 172);
-    border-radius: 5px;
+#main-header {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
+    background-color: rgb(17, 27, 49);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 0 13px rgb(57, 79, 125);
+    min-height: 3.5rem;
+    padding: 0.5rem 2.5rem;
 }
 
-h2 {
-    text-align: center;
-    padding: 10px;
-    margin: 5px;
+#container {
+    margin-bottom: 2rem;
 }
 
-.login-form {
-    margin: 10px;
-    padding: 15px;
+#handOver {
+    color: #007BFF;
+    cursor: pointer;
+    text-shadow: 0 0 12px rgb(125, 150, 205);
 }
 
-.email {
+#nav-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 5rem;
+    margin-right: 1.3rem;
+    list-style: none;
+}
+
+#nav-content li a {
+    text-decoration: none;
+    color: #007BFF;
+    text-shadow: 0 0 13px rgb(102, 129, 187);
+    font-size: 1.2rem;
+}
+
+#toggleBtn {
+    background-color: rgb(14, 31, 63);
+    outline: none;
+    border: 2px solid rgb(24, 53, 104);
+    border-radius: 0.2rem;
+    padding: 0.5rem;
+    width: 8rem;
+    color: #007BFF;
+    font-weight: 500;
+    font-size: 1rem;
+    box-shadow: 0 0 12px rgb(24, 53, 104);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+#toggleBtn:hover {
+    border-radius: 0.3rem;
+    border-color: rgb(20, 55, 126);
+    transform: scale(1.05);
+}
+
+#toggleBtn:active {
+    background-color: rgb(17, 27, 49);
+    box-shadow: 0 0 12px rgb(24, 53, 104);
+    transform: scale(0.98);
+}
+
+.card {
+    width: 96vw;
+    min-width: 70vw;
+    border: 1px solid rgb(30, 71, 223);
+    border-radius: 0.75rem;
+    margin: 1.1rem auto 2.5rem auto;
+    box-shadow: 0 0 14px rgb(29, 61, 116);
+    display: flex;
+    flex-direction: row;
+    gap: 1.4rem;
+    padding: 1.5rem;
+}
+
+#hero-text {
+    width: 50%;
+    height: 80vh;
+    border: 2px solid rgb(215, 220, 229);
+    border-radius: 1.1rem;
+    box-shadow: 0 0 12px rgb(39, 73, 133);
+    padding: 1.5rem;
+}
+
+.heading {
+    color: #007BFF;
+    text-shadow: 0 0 13px rgb(102, 129, 187);
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+.para {
+    color: #8ca6c4;
+    margin: 1.1rem 0;
+    font-size: 1.2rem;
+    font-weight: 400;
+    text-shadow: none;
+    line-height: 1.6;
+    text-align: left;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+#hero-form {
+    width: 50%;
+    height: 80vh;
+    border: 2px solid rgb(215, 220, 229);
+    border-radius: 1.1rem;
+    box-shadow: 0 0 12px rgb(39, 73, 133);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 1.3rem;
+}
+
+#form-heading {
+    margin-top: 1.2rem;
+    color: #007BFF;
+    text-shadow: 0 0 13px rgb(102, 129, 187);
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+.login-form,
+.register-form,
+.contact-form {
+    width: 100%;
+    max-width: 24rem;
+    min-height: 22rem;
+    border: 2px solid rgb(24, 53, 104);
+    border-radius: 0.5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 3px;
-    padding: 5px;
-    
+    gap: 0.8rem;
+    padding: 1.5rem;
+    box-shadow: 0 0 15px rgba(24, 53, 104, 0.5);
 }
 
-.name {
+.email,
+.password,
+.name,
+.message {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    margin: 3px;
-    padding: 5px;
-    
-}
-
-.password {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 3px;
-    padding: 5px;
 }
 
 label {
-    color: rgb(32, 40, 40);
-    font-weight: 900;
-    font-style:normal;
-    font-size: x-large;
-    padding: 7px;
+    display: block;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #bcd0e5;
+    margin-bottom: 0.4rem;
 }
 
-input {
+input,
+textarea {
     width: 100%;
-    border: 3px solid rgb(135, 147, 117);
-    border-radius: 10px;
-    font-size: xx-large;
-    box-sizing: border-box;
-    margin: 4px;
-    padding: 10px;
+    border: 2px solid rgb(24, 53, 104);
+    border-radius: 0.3rem;
+    background-color: rgb(14, 31, 63);
+    color: #ffffff;
+    font-size: 1rem;
+    padding: 0.6rem 0.8rem;
+    margin-bottom: 0.6rem;
+    font-family: inherit;
+    resize: vertical;
 }
 
-input:focus {
+input:focus,
+textarea:focus {
     outline: none;
-    border: 3px solid #007BFF;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+    border-color: #007BFF;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
 }
 
-.btn-grp {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
+.submit-btn {
+    width: 100%;
+    border: 2px solid rgb(24, 53, 104);
+    border-radius: 0.3rem;
+    background-color: rgb(63, 76, 102);
+    color: #d6dee2;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.6rem 0.8rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
 }
 
-button {
-    font-size: 16px; 
-    padding: 10px 20px; 
-    margin: 5px; 
-    color: black; 
-    background-color: aliceblue;
-    border: 2px solid black;
-    border-radius: 7px;
-    cursor: pointer; /* Clickable feel ke liye */
-    font-weight: bold; /* Text thoda ubhar ke aayega */
-    transition: 0.3s ease; /* Hover effect ko smooth karega */
+.submit-btn:hover {
+    background-color: #007BFF;
+    border-color: #007BFF;
+    color: #ffffff;
+    box-shadow: 0 0 13px rgba(0, 123, 255, 0.5);
+    transform: translateY(-2px);
 }
 
-/* Jab mouse button ke upar jayega */
-button:hover {
-    background-color: black;
-    color: aliceblue;
+.submit-btn:active {
+    transform: scale(0.97);
 }
 
-
-/* .register-form {
-    display: none;
-} */
- 
+#logIn-btn,
+#create-btn,
+#contact-btn {
+    margin-top: 0.8rem;
+}
 
 .hidden {
     display: none;
 }
 
-/* #showLoginBtn {
-    display: none;
-} */
-
-/* .login-form {
-    display: none;
-} */
-
-.submit-btn {
-    font-size: 16px; 
-    padding: 4px; 
-    margin-left: 13px; 
-    color: black; 
-    background-color: aliceblue;
-    border: 2px solid black;
-    border-radius: 7px;
-    cursor: pointer; /* Clickable feel ke liye */
-    font-weight: bold; /* Text thoda ubhar ke aayega */
-    transition: 0.3s ease; /* Hover effect ko smooth karega */
+/* Status Badges */
+.status-badge {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.25rem 0.7rem;
+    margin-left: 0.6rem;
+    border-radius: 1rem;
+    background-color: rgba(0, 123, 255, 0.15);
+    color: #4da3ff;
+    border: 1px solid #007BFF;
+    vertical-align: middle;
+    text-shadow: none;
 }
 
-.submit-btn:hover {
-    background-color: #c5d8ed; /* Thoda sa dark shade ho jayega */
+.status-badge.progress {
+    background-color: rgba(255, 193, 7, 0.12);
+    color: #ffd54f;
+    border-color: #ffc107;
 }
 
-/* Jab user click karke dabayega */
-.submit-btn:active {
-    transform: scale(0.96); /* Click karte hi button halka sa andar dabega */
+/* About Section */
+#about {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#heading-about {
+    text-align: center;
+}
+
+#about-card {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1.4rem;
+}
+
+.sec-card {
+    flex: 1 1 18rem;
+    background-color: rgb(14, 31, 63);
+    border: 2px solid rgb(215, 220, 229);
+    border-radius: 0.75rem;
+    box-shadow: 0 0 12px rgb(39, 73, 133);
+    padding: 1.2rem;
+}
+
+.sec-card h2 {
+    color: #007BFF;
+    text-shadow: 0 0 13px rgb(102, 129, 187);
+    font-size: 1.45rem;
+    font-weight: 700;
+}
+
+.sec-card p {
+    color: #8ca6c4;
+    margin: 0.9rem 0 0 0;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* Tech Stack Section */
+#about-tech {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#about-tech h2 {
+    color: #007BFF;
+    text-shadow: 0 0 13px rgb(102, 129, 187);
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+#about-tech p {
+    color: #8ca6c4;
+    margin: 0.8rem 0 0 0;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+/* Contact Section (Single Clean Card) */
+#contact {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    gap: 0.8rem;
+}
+
+#contact h2 {
+    color: #007BFF;
+    text-shadow: 0 0 13px rgb(102, 129, 187);
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+#contact p {
+    color: #8ca6c4;
+    max-width: 48rem;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.contact-details {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.contact-details p {
+    color: #bcd0e5;
+    font-size: 1.1rem;
+}
+
+.contact-details a {
+    color: #4da3ff;
+    text-decoration: none;
+}
+
+.contact-details a:hover {
+    text-decoration: underline;
+}
+
+/* Footer Section */
+#main-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background-color: rgb(17, 27, 49);
+    border-top: 1px solid rgb(30, 71, 223);
+    box-shadow: 0 0 13px rgb(57, 79, 125);
+    padding: 1rem 2.5rem;
+    margin-top: 2rem;
+}
+
+.footer-text {
+    color: #8ca6c4;
+    font-size: 0.95rem;
+}
+
+.footer-text span {
+    color: #007BFF;
+    font-weight: 700;
+    text-shadow: 0 0 8px rgb(102, 129, 187);
+}
+
+.footer-links {
+    display: flex;
+    align-items: center;
+    gap: 1.8rem;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #bcd0e5;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.25s ease, text-shadow 0.25s ease;
+}
+
+.footer-links a:hover {
+    color: #007BFF;
+    text-shadow: 0 0 10px rgba(0, 123, 255, 0.6);
 }

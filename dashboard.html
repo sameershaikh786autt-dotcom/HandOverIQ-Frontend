@@ -1,30 +1,117 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HandOverLQ Dashboard</title>
-    <link rel="stylesheet" href="dash.css" />
-</head>
-<body>
-    <div class="dashboard-container">
+    <link rel="stylesheet" href="css/dash.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="dashboard-header">
+      <h2 id="handOver">HandOverLQ</h2>
+      <!-- <nav>
+                <ul id="nav_list">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contactUs">Contact Us</a></li>
+                </ul>
+            </nav> -->
+      <button id="logoutBtn" class="submit-btn">Log Out</button>
+    </header>
 
-        <!-- Header -->
-        <header class="dashboard-header">
-            <h2>HandOverLQ Dashboard</h2>
-            <button id="logoutBtn" class="submit-btn">Log Out</button>
-        </header>
+    <!-- Main Content -->
+    <main class="dashboard-content">
+      <h3>Welcome back!</h3>
+      <p>
+        Welcome to your HandOverLQ workspace. Easily manage your projects and
+        documentation here.
+      </p>
 
-        <!-- Main Content -->
-        <main class="dashboard-content">
-            <h3>Welcome back!</h3>
-            <p>Welcome to your HandOverLQ workspace. Easily manage your projects and documentation here.</p>
-        </main>    
+      <section id="project-sec">
+        <h2 id="project-heading">Information About the Project</h2>
+        <form action="" id="project-info">
+          <label for="project-name">Project Name :</label>
+          <input
+            type="text"
+            name="name"
+            id="project-name"
+            placeholder="Enter Project Name"
+            required
+          />
 
-        
+          <label for="project-description">Project description :</label>
+          <textarea
+            name="description"
+            id="project-description"
+            rows="4"
+            placeholder="Enter project description...."
+          ></textarea>
 
+          <label for="repository-project">Project Repository :</label>
+          <input
+            type="url"
+            name="repositoryUrl"
+            id="repository-project"
+            placeholder="https://github.com/username/repo"
+          />
+
+           <button type="submit" id="projectSubmitBtn">submit</button>
+        </form>
+      </section>
+
+      <section id="document-sec" class="margin">
+        <h2 id="document-heading">Project documentation</h2>
+        <form action="" id="document-info">
+          <label for="file-name">File Name :</label>
+          <input
+            type="text"
+            name="fileName"
+            id="file-name"
+            placeholder="Enter File Name"
+            required
+          />
+
+
+          <label for="docPdf">Upload pdf</label>
+          <input
+            type="file"
+            name="filePath"
+            id="docPdf"
+            accept=".pdf"
+          />
+          <button type="submit" id="docSubmitBtn">submit</button>
+        </form>
+      </section>
+
+
+      <section id="project-Id" class="margin">
+        <h2 id="heading">Project Id And document Id</h2>
+        <form action="" id="id-info">
+          <label for="proId">Project ID :</label>
+          <input
+            type="text"
+            name="projectId"
+            id="proId"
+            placeholder="Enter Project ID"
+            required
+          />
+
+
+          <label for="docId">document ID :</label>
+          <input
+            type="text"
+            name="documentId"
+            id="docId"
+            placeholder="Enter document ID"
+          />
+          <button type="submit" id="btn">submit</button>
+        </form>
+      </section>
+
+    </main>
 
 
     <script src="javaScript/dash.js"></script>
-</body>
+  </body>
 </html>

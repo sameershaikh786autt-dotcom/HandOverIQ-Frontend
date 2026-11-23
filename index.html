@@ -1,65 +1,250 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HandOverIQ</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    
-    <div class="container">
-        <h2>HandOverLQ</h2>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header id="main-header">
+      <h2 id="handOver">HandOverIQ</h2>
+      <nav id="nav-bar">
+        <ul id="nav-content">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+      </nav>
+      <button type="button" id="toggleBtn">Create User</button>
+    </header>
 
-
-         <!-- for log In users -->
-        <form class="login-form" id="loginForm">
-           <div class="email">
-             <label for="email" >Email</label>
-             <input type="email" name="email" id="emailInput" placeholder="example@gmail.com" required>
-           </div>
-
-           <div class="password">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="inputpassword" placeholder="123456@123" required>
-           </div>
-
-           <!-- Login ke liye naya Submit button -->
-           <button type="submit" class="submit-btn">Log In</button>
-
-        </form>
-
-
-         <!-- for register users -->
-        <form class="register-form hidden" id="registerForm">
-
-            <div class="name">
-             <label for="nameInput">Name</label>
-             <input type="text" name="name" id="nameInput" placeholder="Enter name" required>
-             </div>
-
-             <div class="email">
-             <label for="email" >Email</label>
-             <input type="email" name="email" id="regEmailInput" placeholder="example@gmail.com" required>
-             </div>
-
-           <div class="password">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="regPasswordInput" placeholder="123456@123" required>
-           </div>
-
-           <!-- Login ke liye naya Submit button -->
-           <button type="submit" class="submit-btn">Create User</button>
-
-        </form>
-        
-        <div class="btn-grp">
-             <button type="button" id="toggleBtn">Create User</button> 
+    <main id="container">
+      <!-- HOME SECTION -->
+      <section id="home" class="card">
+        <div id="hero-text">
+          <h1 id="main-heading" class="heading">
+            Instant Project Knowledge Transfer, Powered by AI
+          </h1>
+          <p id="main-para" class="para">
+            Upload project docs, enter your Project & Document IDs, and get
+            clear AI-generated handover summaries for seamless developer
+            onboarding.
+          </p>
+          <h2 id="sub-heading" class="heading">
+            Understand Any Project in Minutes
+          </h2>
+          <p id="sub-para" class="para">
+            No need to read long and confusing files anymore. Just upload your
+            project documents, enter your IDs, and get a simple, ready-to-read
+            summary so any new developer can start working quickly.
+          </p>
         </div>
 
-    </div>
+        <div id="hero-form">
+          <!-- Login Form -->
+          <h2 id="form-heading">HandOverIQ</h2>
+          <form class="login-form" id="loginForm">
+            <div class="email">
+              <label for="emailInput">Email</label>
+              <input
+                type="email"
+                name="email"
+                id="emailInput"
+                placeholder="example@gmail.com"
+                required
+              />
+            </div>
 
+            <div class="password">
+              <label for="inputpassword">Password</label>
+              <input
+                type="password"
+                name="password"
+                id="inputpassword"
+                placeholder="123456@123"
+                required
+              />
+            </div>
 
-   <script src="javaScript/app.js"></script>
-</body>
+            <button type="submit" class="submit-btn" id="logIn-btn">
+              Submit
+            </button>
+          </form>
+
+          <!-- Register Form -->
+          <form class="register-form hidden" id="registerForm">
+            <div class="name">
+              <label for="nameInput">Name</label>
+              <input
+                type="text"
+                name="name"
+                id="nameInput"
+                placeholder="Enter name"
+                required
+              />
+            </div>
+
+            <div class="email">
+              <label for="regEmailInput">Email</label>
+              <input
+                type="email"
+                name="email"
+                id="regEmailInput"
+                placeholder="example@gmail.com"
+                required
+              />
+            </div>
+
+            <div class="password">
+              <label for="regPasswordInput">Password</label>
+              <input
+                type="password"
+                name="password"
+                id="regPasswordInput"
+                placeholder="123456@123"
+                required
+              />
+            </div>
+
+            <button type="submit" class="submit-btn" id="create-btn">
+              Create User
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- ABOUT SECTION -->
+      <section id="about" class="card">
+        <h2 class="heading" id="heading-about">
+          About HandOverIQ <span class="status-badge">Backend </span>
+        </h2>
+        <p id="para-about" class="para">
+          HandOverIQ is an AI-powered tool that helps developers understand any
+          software project quickly. Instead of spending days reading long files
+          and complex setups, you can upload your project documents, enter your
+          Project & Document IDs, and get clear, easy-to-read handover summaries
+          powered by Google Gemini AI.
+        </p>
+      </section>
+
+      <!-- ABOUT FEATURE CARDS -->
+      <section id="about-card" class="card">
+        <div class="sec-card">
+          <h2>AI Document Summary <span class="status-badge">Ready</span></h2>
+          <p>
+            Upload project documents and enter your Project & Document IDs to
+            generate clean, simple handover summaries using Google Gemini AI.
+          </p>
+        </div>
+        <div class="sec-card">
+          <h2>Secure Java Backend <span class="status-badge">Ready</span></h2>
+          <p>
+            Built with Java and Spring Boot using clean layered architecture,
+            user authentication, and secure REST APIs.
+          </p>
+        </div>
+        <div class="sec-card">
+          <h2>
+            Setup Guides & History
+            <span class="status-badge progress">In Progress</span>
+          </h2>
+          <p>
+            Automatically turning project configuration files into step-by-step
+            setup guides and saving past summaries for your team.
+          </p>
+        </div>
+      </section>
+
+      <!-- TECH STACK -->
+      <section id="about-tech" class="card">
+        <h2>Tech Stack</h2>
+        <p>
+          Java • Spring Boot • Google Gemini AI • Spring WebClient • MySQL /
+          MongoDB • Docker • Render
+        </p>
+      </section>
+
+      <!-- CONTACT SECTION -->
+      <section id="contact" class="card">
+        <div id="contact-info">
+          <h2 class="heading">Contact & Developer Info</h2>
+          <p class="para">
+            Built by <strong>Mohd Sameer</strong>, a Java Backend Developer
+            specializing in Spring Boot, REST APIs, and cloud-ready
+            applications. Feel free to reach out for feedback, collaboration, or
+            software developer opportunities.
+          </p>
+          <div class="contact-details">
+            <p><strong>Email:</strong> sameer71h@gmail.com</p>
+            <p>
+              <strong>GitHub:</strong>
+              <a
+                href="https://github.com/sameershaikh786autt-dotcom"
+                target="_blank"
+                >github.com/sameershaikh786autt-dotcom</a
+              >
+            </p>
+          </div>
+        </div>
+
+        <div id="contact-form-box">
+          <h2 class="heading">Send a Message</h2>
+          <form class="contact-form" id="contactForm">
+            <div class="name">
+              <label for="contactName">Your Name</label>
+              <input
+                type="text"
+                name="contactName"
+                id="contactName"
+                placeholder="Enter your name"
+                required
+              />
+            </div>
+
+            <div class="email">
+              <label for="contactEmail">Your Email</label>
+              <input
+                type="email"
+                name="contactEmail"
+                id="contactEmail"
+                placeholder="example@gmail.com"
+                required
+              />
+            </div>
+
+            <div class="message">
+              <label for="contactMessage">Message</label>
+              <textarea
+                name="contactMessage"
+                id="contactMessage"
+                rows="4"
+                placeholder="Write your message, feedback, or query..."
+                required
+              ></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn" id="contact-btn">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer id="main-footer">
+      <p class="footer-text">
+        © 2026 <span>HandOverIQ</span> • Built by Mohd Sameer
+      </p>
+      <div class="footer-links">
+        <a href="mailto:sameer71h@gmail.com">Email</a>
+        <a href="https://github.com/sameershaikh786autt-dotcom" target="_blank"
+          >GitHub</a
+        >
+        <a href="#home">Back to Top ↑</a>
+      </div>
+    </footer>
+
+    <script src="javaScript/app.js"></script>
+  </body>
 </html>
